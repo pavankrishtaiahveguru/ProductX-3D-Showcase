@@ -1,0 +1,115 @@
+product-showcase/
+│
+├── public/
+│   ├── images/
+│   │   ├── product/
+│   │   ├── gallery/
+│   │   └── icons/
+│   ├── models/
+│   └── videos/
+│
+├── src/
+│
+│   ├── assets/
+│   │   ├── images/
+│   │   ├── icons/
+│   │   ├── fonts/
+│   │   └── lottie/
+│
+│   ├── components/
+│   │
+│   │   ├── layout/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── PageTransition.jsx
+│   │   │   └── ScrollToTop.jsx
+│   │
+│   │   ├── hero/
+│   │   │   ├── Hero.jsx
+│   │   │   └── HeroAnimations.js
+│   │
+│   │   ├── scrollStory/
+│   │   │   ├── ScrollStory.jsx
+│   │   │   ├── StickySection.jsx
+│   │   │   └── ScrollAnimations.js
+│   │
+│   │   ├── productViewer/
+│   │   │   ├── ProductViewer.jsx
+│   │   │   ├── CanvasScene.jsx
+│   │   │   └── ViewerAnimations.js
+│   │
+│   │   ├── features/
+│   │   │   ├── Features.jsx
+│   │   │   └── FeatureCard.jsx
+│   │
+│   │   ├── gallery/
+│   │   │   ├── Gallery.jsx
+│   │   │   └── MasonryGrid.jsx
+│   │
+│   │   ├── specs/
+│   │   │   ├── Specs.jsx
+│   │   │   └── Accordion.jsx
+│   │
+│   │   ├── cart/
+│   │   │   ├── AddToCart.jsx
+│   │   │   └── CartAnimation.js
+│   │
+│   │   └── ui/
+│   │       ├── Button.jsx
+│   │       ├── Loader.jsx
+│   │       ├── CursorFollower.jsx
+│   │       ├── MagneticButton.jsx
+│   │       ├── TiltCard.jsx
+│   │       ├── SectionHeading.jsx
+│   │       └── GradientBackground.jsx
+│
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── GalleryPage.jsx
+│   │   ├── SpecsPage.jsx
+│   │   └── NotFound.jsx
+│
+│   ├── routes/
+│   │   ├── AppRoutes.jsx
+│   │   ├── routeConfig.js
+│   │   └── ProtectedRoute.jsx
+│
+│   ├── animations/
+│   │   ├── framerVariants.js
+│   │   ├── gsapAnimations.js
+│   │   ├── scrollTriggers.js
+│   │   └── pageTransitions.js
+│
+│   ├── hooks/
+│   │   ├── useLenisScroll.js
+│   │   ├── useParallax.js
+│   │   ├── useScrollProgress.js
+│   │   ├── useCursor.js
+│   │   ├── useActiveSection.js
+│   │   └── useSmoothScroll.js
+│
+│   ├── context/
+│   │   ├── ThemeContext.jsx
+│   │   └── UIContext.jsx
+│
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   ├── productData.js
+│   │   ├── routes.js
+│   │   └── seo.js
+│
+│   ├── styles/
+│   │   ├── globals.css
+│   │   ├── typography.css
+│   │   └── animations.css
+│
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── .env
+├── .gitignore
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.js
