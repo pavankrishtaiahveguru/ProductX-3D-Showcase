@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import useActiveSection from "../../hooks/useActiveSection";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const active = useActiveSection(["hero", "specs", "gallery"]);
+  const isGalleryActive = active === "gallery" || location.pathname === "/gallery";
 
   const links = [
     { name: "Home", path: "/" },
@@ -32,25 +36,31 @@ const NavBar = () => {
             <NavLink
               key={link.name}
               to={link.path}
-              className={({ isActive }) =>
-                `relative text-sm font-medium transition ${
-                  isActive
+              className={({ isActive }) => {
+                const activeLink =
+                  link.name === "Gallery" ? isGalleryActive : isActive;
+                return `relative text-sm font-medium transition ${
+                  activeLink
                     ? "text-neutral-900"
                     : "text-neutral-500 hover:text-neutral-900"
-                }`
-              }
+                }`;
+              }}
             >
-              {({ isActive }) => (
-                <>
-                  {link.name}
-                  {isActive && (
-                    <motion.span
-                      layoutId="underline"
-                      className="absolute left-0 -bottom-1 h-0.5 w-full bg-neutral-900"
-                    />
-                  )}
-                </>
-              )}
+              {({ isActive }) => {
+                const activeLink =
+                  link.name === "Gallery" ? isGalleryActive : isActive;
+                return (
+                  <>
+                    {link.name}
+                    {activeLink && (
+                      <motion.span
+                        layoutId="underline"
+                        className="absolute left-0 -bottom-1 h-0.5 w-full bg-neutral-900"
+                      />
+                    )}
+                  </>
+                );
+              }}
             </NavLink>
           ))}
         </div>
@@ -76,7 +86,13 @@ const NavBar = () => {
               key={link.name}
               to={link.path}
               onClick={() => setOpen(false)}
-              className="text-neutral-600 hover:text-neutral-900"
+              className={
+                link.name === "Gallery"
+                  ? isGalleryActive
+                    ? "text-black"
+                    : "text-gray-500"
+                  : "text-neutral-600 hover:text-neutral-900"
+              }
             >
               {link.name}
             </NavLink>

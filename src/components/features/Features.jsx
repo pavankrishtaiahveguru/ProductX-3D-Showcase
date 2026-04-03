@@ -2,6 +2,7 @@ import { FiCpu, FiZap, FiShield } from "react-icons/fi";
 import FeatureCard from "./FeatureCard";
 import { motion } from "framer-motion";
 import { containerVariant } from "../../animations/framerVariants";
+import SectionHeading from "../ui/SectionHeading";
 
 const Features = () => {
   const data = [
@@ -21,13 +22,17 @@ const Features = () => {
       icon: <FiShield />,
     },
   ];
+
   return (
     <section className="p-3 py-16 sm:py-24 lg:py-32 bg-neutral-50">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-5xl font-bold">Why Choose ProductX</h2>
-        <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
-          Designed with innovation, performance and reliability at its core.
-        </p>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* ✅ Section Heading */}
+        <SectionHeading
+          title="Why Choose ProductX"
+          subtitle="Designed with innovation, performance and reliability at its core."
+        />
+
+        {/* 🔥 Feature Cards */}
         <motion.div
           variants={containerVariant}
           initial="hidden"

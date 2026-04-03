@@ -1,12 +1,13 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect } from "react";
+import useCursor from "../../hooks/useCursor";
 
 const CursorFollower = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
   const smoothX = useSpring(mouseX, { stiffness: 100, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+  useCursor();
 
   useEffect(() => {
     const move = (e) => {

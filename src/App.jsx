@@ -4,9 +4,11 @@ import AppRoutes from "./routes/AppRoutes";
 import Footer from "./components/layout/Footer";
 import useLenisScroll from "./hooks/useLenisScroll";
 import CursorFollower from "./components/ui/CursorFollower";
+import useSmoothScroll from "./hooks/useSmoothScroll";
 
 const App = () => {
   useLenisScroll();
+  useSmoothScroll();
   return (
     <div className="min-h-screen">
       <CursorFollower />

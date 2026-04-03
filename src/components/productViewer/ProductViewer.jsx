@@ -1,11 +1,20 @@
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import CanvasScene from "./CanvasScene";
+import Loader from "../ui/Loader";
+import { useProgress } from "@react-three/drei";
 
 const ProductViewer = () => {
+  const { active } = useProgress(); // 🔥 track 3D loading
+
   return (
-    <section className="py-32 bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-16 ">
+    <section className="py-32 bg-neutral-50 relative">
+      
+      {/* FULLSCREEN LOADER */}
+      {active && <Loader />}
+
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-16">
+        
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,8 +29,9 @@ const ProductViewer = () => {
           </p>
         </motion.div>
 
-        {/* 3d CanvasScene */}
-        <CanvasScene/>
+        {/* 3D Canvas */}
+        <CanvasScene />
+
       </div>
     </section>
   );

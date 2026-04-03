@@ -1,5 +1,11 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
+import {
+  useGLTF,
+  Environment,
+  OrbitControls,
+  useProgress,
+  Html,
+} from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
 
@@ -10,8 +16,27 @@ import {
 
 import useScrollProgress from "../../hooks/useScrollProgress";
 
-/* 📱 Iphone Model */
+/* 🔄 Loader Inside Canvas (TAILWIND) */
+const LoaderInside = () => {
+  const { progress } = useProgress();
 
+  return (
+    <Html center>
+      <div className="flex flex-col items-center justify-center text-white">
+        
+        {/* Spinner */}
+        <div className="w-10 h-10 border-4 border-white/20 border-t-blue-500 rounded-full animate-spin" />
+        
+        {/* Progress Text */}
+        <p className="mt-2 text-sm tracking-wide">
+          {Math.round(progress)}%
+        </p>
+      </div>
+    </Html>
+  );
+};
+
+/* 📱 Iphone Model */
 function IphoneModel() {
   const model = useGLTF("/models/iphone16promax.glb");
   const ref = useRef();
@@ -36,13 +61,11 @@ function IphoneModel() {
 }
 
 /* 🎥 Scroll Camera Controller */
-
 function ScrollCameraController() {
   const { camera } = useThree();
   const scrollProgress = useScrollProgress();
 
   useFrame(() => {
-    // interpolate between default and zoomed preset
     const targetPosition = vectorLerp(
       cameraPresets.default.position,
       cameraPresets.zoomed.position,
@@ -57,27 +80,26 @@ function ScrollCameraController() {
 }
 
 /* 🎬 Canvas Scene */
-
 const CanvasScene = () => {
   return (
-    <div className="h-137.5 w-full">
+    <div className="w-full h-[550px]">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
         
-        {/* Lights */}
+        {/* 💡 Lights */}
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} />
         <directionalLight position={[-5, -5, -5]} intensity={0.6} />
 
-        {/* Model + Environment */}
-        <Suspense fallback={null}>
+        {/* 📦 Model + Environment */}
+        <Suspense fallback={<LoaderInside />}>
           <IphoneModel />
           <Environment preset="city" />
         </Suspense>
 
-        {/* Scroll-based Camera */}
+        {/* 🎥 Scroll Camera */}
         <ScrollCameraController />
 
-        {/* Optional Controls */}
+        {/* 🎮 Controls */}
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
     </div>
@@ -86,5 +108,5 @@ const CanvasScene = () => {
 
 export default CanvasScene;
 
-// Preload model
+/* ⚡ Preload Model */
 useGLTF.preload("/models/iphone16promax.glb");
